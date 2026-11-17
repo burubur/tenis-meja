@@ -1,0 +1,54 @@
+{
+  "updated_at": "2026-11-17T20:50:00+07:00",
+  "source_note": "SAMPLE DATA: 2 contoh entries for layout testing only. Not real tournaments.",
+  "tournaments": [
+    {
+      "id": "contoh-open-bandung-2026",
+      "name": "[CONTOH] Kejuaraan Tenis Meja Terbuka Bandung",
+      "start_date": "2026-12-12",
+      "end_date": "2026-12-14",
+      "city": "Bandung",
+      "province": "Jawa Barat",
+      "venue": "GOR Contoh, Jl. Contoh No. 1",
+      "categories": [
+        "Tunggal Putra Umum",
+        "Tunggal Putri Umum",
+        "Ganda Veteran 40+",
+        "Pemula"
+      ],
+      "registration_fee": "Rp150.000 per peserta",
+      "registration_deadline": "2026-11-22",
+      "organizer": "Panitia Contoh",
+      "contact": "kontak@example.com (contoh)",
+      "source_urls": [
+        "https://example.com",
+        "https://example.com"
+      ],
+      "date_found": "2026-11-17",
+      "status": "confirmed",
+      "notes": "Entri contoh untuk pratinjau. Bukan acara nyata.",
+      "sample": true
+    },
+    {
+      "id": "contoh-piala-surabaya-2027",
+      "name": "[CONTOH] Piala Tenis Meja Antarklub Surabaya",
+      "start_date": "2027-01-24",
+      "end_date": null,
+      "city": "Surabaya",
+      "province": "Jawa Timur",
+      "venue": null,
+      "categories": [],
+      "registration_fee": null,
+      "registration_deadline": null,
+      "organizer": null,
+      "contact": null,
+      "source_urls": [
+        "https://example.com"
+      ],
+      "date_found": "2026-11-17",
+      "status": "unconfirmed",
+      "notes": null,
+      "sample": true
+    }
+  ]
+}

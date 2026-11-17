@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jadwal Turnamen Tenis Meja Indonesia</title>
+<meta name="description" content="Daftar jadwal turnamen tenis meja (ping pong) di Indonesia: tanggal, kota, kategori, biaya, dan kontak panitia.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f7fb; --card:#fff; --ink:#0f172a; --muted:#5b6475; --line:#e3e7ef;
+  --brand:#e11d48; --brand-ink:#9f1239; --brand-soft:#fff1f3;
+  --chip:#eef2ff; --chip-ink:#3730a3;
+  --warn:#b45309; --warn-soft:#fff7e6; --bad:#b91c1c; --bad-soft:#fdecec;
+  --sample:#6d28d9; --sample-soft:#f3edff;
+  --radius:14px; --shadow:0 1px 2px rgba(15,23,42,.05),0 4px 16px rgba(15,23,42,.06);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 "Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--brand-ink)}
+.wrap{max-width:960px;margin:0 auto;padding:0 16px}
+header.top{background:linear-gradient(135deg,#be123c 0%,#e11d48 55%,#f97316 130%);color:#fff;padding:28px 0 64px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;opacity:.9}
+.brand .ball{width:14px;height:14px;border-radius:50%;background:#fde68a;box-shadow:0 0 0 3px rgba(255,255,255,.25)}
+h1{margin:10px 0 6px;font-size:clamp(24px,6vw,36px);line-height:1.15;font-weight:800;letter-spacing:-.02em}
+.sub{margin:0;max-width:620px;opacity:.92}
+.updated{margin-top:12px;font-size:13px;opacity:.85}
+main{margin-top:-44px;padding-bottom:48px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+.filters{padding:14px;display:grid;gap:10px;grid-template-columns:1fr}
+.filters label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:4px}
+.filters input,.filters select{width:100%;font:inherit;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px;min-height:44px}
+.filters input:focus,.filters select:focus{outline:2px solid var(--brand);outline-offset:1px;border-color:transparent}
+.filters .toggle{display:flex;margin:0;color:var(--ink);align-items:center;gap:8px;font-size:14px;font-weight:500;cursor:pointer;user-select:none;min-height:44px}
+.filters .toggle input{width:20px;height:20px;min-height:0;padding:0;flex:none;accent-color:var(--brand);margin:0}
+@media(min-width:720px){.filters{grid-template-columns:2fr 1fr 1fr;align-items:end}.filters .row2{grid-column:1/-1}}
+.row2{display:flex;flex-wrap:wrap;gap:4px 22px}
+.banner{margin:14px 0 0;padding:12px 14px;border-radius:12px;background:var(--sample-soft);color:#4c1d95;border:1px solid #ddd0fb;font-size:14px;display:flex;gap:10px;align-items:flex-start}
+.banner.error{background:var(--bad-soft);color:#7f1d1d;border-color:#f6caca}
+.banner b{font-weight:700}
+.meta{display:flex;justify-content:space-between;align-items:center;margin:18px 2px 10px;font-size:13px;color:var(--muted)}
+.list{display:grid;gap:14px}
+.card{padding:16px;position:relative;overflow:hidden}
+.card.past{opacity:.7}
+.card .datebox{display:inline-flex;align-items:center;gap:8px;font-weight:700;color:var(--brand-ink);background:var(--brand-soft);border-radius:999px;padding:4px 12px;font-size:13px}
+.card h2{margin:10px 0 4px;font-size:18px;line-height:1.3;font-weight:700;letter-spacing:-.01em}
+.loc{color:var(--muted);font-size:14px;margin:0}
+.badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.badge{display:inline-block;font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:999px;letter-spacing:.02em}
+.b-sample{background:var(--sample-soft);color:var(--sample);border:1px dashed #b9a1f2}
+.b-unconf{background:#fef3c7;color:#92400e;border:1px solid #f59e0b;font-size:12px;padding:4px 10px}
+.card.unconf{border-top:4px solid #f59e0b}
+.group-h{margin:22px 2px 2px;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.src.text{color:var(--muted);font-weight:500;background:#f8fafc;cursor:default}
+.datebox.nodate{background:#eef0f4;color:#475569}
+.b-past{background:#eef0f4;color:#475569}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 2px}
+.chip{background:var(--chip);color:var(--chip-ink);font-size:12.5px;font-weight:600;padding:4px 10px;border-radius:8px}
+dl{display:grid;grid-template-columns:1fr;gap:10px 18px;margin:14px 0 0;padding-top:14px;border-top:1px solid var(--line)}
+@media(min-width:620px){dl{grid-template-columns:1fr 1fr}}
+dt{font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+dd{margin:2px 0 0;font-size:14.5px;word-break:break-word}
+.na{color:#8a93a6;font-style:italic}
+.flag{display:inline-block;margin-left:6px;font-size:11.5px;font-weight:700;padding:1px 8px;border-radius:999px;vertical-align:1px}
+.flag.soon{background:var(--warn-soft);color:var(--warn)}
+.flag.closed{background:var(--bad-soft);color:var(--bad)}
+.notes{margin:14px 0 0;padding:10px 12px;background:#f8fafc;border-left:3px solid #cbd5e1;border-radius:6px;font-size:14px;color:#334155}
+.sources{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.src{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:600;text-decoration:none;border:1px solid var(--line);padding:8px 12px;border-radius:10px;min-height:40px;background:#fff}
+.src:hover{border-color:var(--brand);color:var(--brand)}
+.found{font-size:12px;color:var(--muted);margin-top:10px}
+.empty{padding:32px 20px;text-align:center;color:var(--muted)}
+.empty .big{font-size:34px}
+.empty h3{margin:8px 0 4px;color:var(--ink)}
+.btn{font:inherit;font-weight:600;border:0;background:var(--brand);color:#fff;padding:10px 16px;border-radius:10px;cursor:pointer;margin-top:10px;min-height:44px}
+footer{color:var(--muted);font-size:13px;text-align:center;padding:8px 16px 32px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="brand"><span class="ball" aria-hidden="true"></span>Tenis Meja · Indonesia</div>
+    <h1>Jadwal Turnamen Tenis Meja Indonesia</h1>
+    <p class="sub">Kumpulan jadwal turnamen tenis meja (ping pong) di seluruh Indonesia. Selalu cek ulang detail ke panitia lewat tautan sumber.</p>
+    <div class="updated" id="updated">Memuat data…</div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="panel filters" aria-label="Filter">
+    <div>
+      <label for="q">Cari</label>
+      <input id="q" type="search" placeholder="Nama turnamen, venue, kategori, panitia…" autocomplete="off">
+    </div>
+    <div>
+      <label for="city">Kota</label>
+      <select id="city"><option value="">Semua kota</option></select>
+    </div>
+    <div>
+      <label for="month">Bulan</label>
+      <select id="month"><option value="">Semua bulan</option></select>
+    </div>
+    <div class="row2">
+      <label class="toggle"><input type="checkbox" id="onlyConf"> Hanya yang terkonfirmasi</label>
+      <label class="toggle"><input type="checkbox" id="showPast"> Tampilkan yang sudah lewat</label>
+    </div>
+  </section>
+
+  <div id="banners"></div>
+  <div class="meta"><span id="count" aria-live="polite"></span><span id="note"></span></div>
+  <div class="list" id="list"></div>
+</main>
+
+<footer>Data dari <code>tournaments.json</code>. Info bisa berubah; konfirmasi ke panitia sebelum mendaftar.</footer>
+
+<script>
+(function(){
+  "use strict";
+  var BULAN = ["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Agu","Sep","Okt","Nov","Des"];
+  var BULAN_PANJANG = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
+  var NA = "Belum diumumkan";
+  var el = function(id){ return document.getElementById(id); };
+  var state = { all: [], data: null };
+
+  function esc(s){ return String(s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+  function blank(v){ return v === null || v === undefined || (typeof v === "string" && v.trim() === ""); }
+  function val(v){ return blank(v) ? '<span class="na">' + NA + '</span>' : esc(v); }
+  function parseDate(s){
+    if (blank(s)) return null;
+    var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(s));
+    if (!m) return null;
+    var d = new Date(+m[1], +m[2]-1, +m[3]);
+    return isNaN(d) ? null : d;
+  }
+  function today(){ var n = new Date(); return new Date(n.getFullYear(), n.getMonth(), n.getDate()); }
+  function fmt(d){ return d.getDate() + " " + BULAN[d.getMonth()] + " " + d.getFullYear(); }
+  function fmtRange(a, b){
+    if (!a) return NA;
+    if (!b || b.getTime() === a.getTime()) return fmt(a);
+    if (b < a) return fmt(a);
+    if (a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth())
+      return a.getDate() + "–" + b.getDate() + " " + BULAN[a.getMonth()] + " " + a.getFullYear();
+    if (a.getFullYear() === b.getFullYear())
+      return a.getDate() + " " + BULAN[a.getMonth()] + " – " + fmt(b);
+    return fmt(a) + " – " + fmt(b);
+  }
+  function fmtUpdated(s){
+    if (blank(s)) return null;
+    var d = new Date(s);
+    if (isNaN(d)) { var p = parseDate(s); return p ? fmt(p) : esc(s); }
+    var t = d.toLocaleTimeString("id-ID", {hour:"2-digit", minute:"2-digit"});
+    return d.getDate() + " " + BULAN_PANJANG[d.getMonth()] + " " + d.getFullYear() + ", " + t;
+  }
+  function daysBetween(a, b){ return Math.round((b - a) / 86400000); }
+  function safeUrl(u){
+    try { var x = new URL(String(u), location.href); return (x.protocol === "http:" || x.protocol === "https:") ? x.href : null; }
+    catch(e){ return null; }
+  }
+  function asArray(v){ return Array.isArray(v) ? v.filter(function(x){ return !blank(x); }) : (blank(v) ? [] : [v]); }
+
+  function normalize(t, i){
+    var start = parseDate(t.start_date), end = parseDate(t.end_date);
+    var last = end && start && end >= start ? end : start;
+    var srcs = asArray(t.source_urls);
+    if (!srcs.length && !blank(t.source_url)) srcs = [t.source_url]; // tolerate old single-URL shape
+    return {
+      raw: t,
+      id: blank(t.id) ? "t" + i : String(t.id),
+      name: blank(t.name) ? "(Tanpa nama)" : String(t.name),
+      start: start, end: end, last: last,
+      city: blank(t.city) ? "" : String(t.city).trim(),
+      categories: asArray(t.categories || t.divisions),
+      sources: srcs,
+      deadline: parseDate(t.registration_deadline),
+      sample: t.sample === true,
+      unconfirmed: String(t.status || "").toLowerCase() !== "confirmed",
+      search: [t.name,t.city,t.province,t.venue,t.organizer,t.contact,t.notes,t.registration_fee].concat(asArray(t.categories || t.divisions)).filter(function(x){return !blank(x);}).join(" ").toLowerCase()
+    };
+  }
+
+  function buildFilters(){
+    var cities = {}, months = {};
+    state.all.forEach(function(t){
+      if (t.city) cities[t.city] = true;
+      if (t.start) months[t.start.getFullYear() + "-" + String(t.start.getMonth()+1).padStart(2,"0")] = t.start;
+    });
+    var cs = el("city"), ms = el("month");
+    Object.keys(cities).sort(function(a,b){ return a.localeCompare(b, "id"); }).forEach(function(c){
+      var o = document.createElement("option"); o.value = c; o.textContent = c; cs.appendChild(o);
+    });
+    Object.keys(months).sort().forEach(function(k){
+      var d = months[k], o = document.createElement("option");
+      o.value = k; o.textContent = BULAN_PANJANG[d.getMonth()] + " " + d.getFullYear(); ms.appendChild(o);
+    });
+  }
+
+  function deadlineHtml(t){
+    if (!t.deadline) return val(t.raw.registration_deadline);
+    var d = daysBetween(today(), t.deadline), flag = "";
+    if (d < 0) flag = '<span class="flag closed">Pendaftaran ditutup</span>';
+    else if (d === 0) flag = '<span class="flag soon">Hari ini terakhir</span>';
+    else if (d <= 7) flag = '<span class="flag soon">' + d + ' hari lagi</span>';
+    return esc(fmt(t.deadline)) + flag;
+  }
+
+  function cardHtml(t, isPast){
+    var r = t.raw, loc = [t.city, r.province].filter(function(x){ return !blank(x); }).map(esc).join(", ");
+    var badges = [];
+    if (t.sample) badges.push('<span class="badge b-sample">Contoh data / sample</span>');
+    if (t.unconfirmed) badges.push('<span class="badge b-unconf">⚠ Belum dikonfirmasi</span>');
+    if (isPast) badges.push('<span class="badge b-past">Sudah lewat</span>');
+    var chips = t.categories.length
+      ? '<div class="chips">' + t.categories.map(function(c){ return '<span class="chip">' + esc(c) + '</span>'; }).join("") + '</div>'
+      : '<div class="chips"><span class="na">Kategori: ' + NA + '</span></div>';
+    var srcs = t.sources.map(function(u, i){
+      var href = /^https?:\/\//i.test(String(u)) ? safeUrl(u) : null;
+      var label = t.sources.length > 1 ? "Sumber " + (i+1) : "Sumber";
+      if (!href) return '<span class="src text" title="Sumber non-web">' + label + ': ' + esc(u) + '</span>';
+      return '<a class="src" href="' + esc(href) + '" target="_blank" rel="noopener noreferrer">' + label + ' <span aria-hidden="true">↗</span><span class="sr"> (tab baru)</span></a>';
+    }).join("");
+    var notes = blank(r.notes) ? "" : '<p class="notes">' + esc(r.notes) + '</p>';
+    var found = parseDate(r.date_found);
+    return '<article class="panel card' + (isPast ? ' past' : '') + (t.unconfirmed ? ' unconf' : '') + '" id="' + esc(t.id) + '">' +
+      (t.start ? '<span class="datebox">📅 ' + esc(fmtRange(t.start, t.end)) + '</span>' : '<span class="datebox nodate">📅 Tanggal belum diumumkan</span>') +
+      '<h2>' + esc(t.name) + '</h2>' +
+      '<p class="loc">📍 ' + (loc || '<span class="na">Lokasi ' + NA.toLowerCase() + '</span>') + '</p>' +
+      (badges.length ? '<div class="badges">' + badges.join("") + '</div>' : "") +
+      chips +
+      '<dl>' +
+        '<div><dt>Venue</dt><dd>' + val(r.venue) + '</dd></div>' +
+        '<div><dt>Biaya pendaftaran</dt><dd>' + val(r.registration_fee) + '</dd></div>' +
+        '<div><dt>Batas pendaftaran</dt><dd>' + deadlineHtml(t) + '</dd></div>' +
+        '<div><dt>Penyelenggara</dt><dd>' + val(r.organizer) + '</dd></div>' +
+        '<div><dt>Kontak</dt><dd>' + val(r.contact) + '</dd></div>' +
+      '</dl>' + notes +
+      (srcs ? '<div class="sources">' + srcs + '</div>' : "") +
+      (found ? '<div class="found">Ditemukan ' + esc(fmt(found)) + '</div>' : "") +
+    '</article>';
+  }
+
+  function render(){
+    var q = el("q").value.trim().toLowerCase(), city = el("city").value, month = el("month").value, showPast = el("showPast").checked, onlyConf = el("onlyConf").checked;
+    var now = today(), list = el("list");
+    if (!state.all.length){
+      list.innerHTML = '<div class="panel empty"><div class="big">🏓</div><h3>Belum ada turnamen</h3><p>Data turnamen sedang dikumpulkan. Cek lagi nanti, ya!</p></div>';
+      el("count").textContent = ""; return;
+    }
+    var pastHidden = 0;
+    var rows = state.all.filter(function(t){
+      var isPast = t.last ? t.last < now : false;
+      if (city && t.city !== city) return false;
+      if (month){ if (!t.start) return false; var k = t.start.getFullYear() + "-" + String(t.start.getMonth()+1).padStart(2,"0"); if (k !== month) return false; }
+      if (q && t.search.indexOf(q) === -1 && t.name.toLowerCase().indexOf(q) === -1) return false;
+      if (onlyConf && t.unconfirmed) return false;
+      if (isPast && !showPast){ pastHidden++; return false; }
+      return true;
+    }).sort(function(a,b){
+      var x = a.start ? a.start.getTime() : Infinity, y = b.start ? b.start.getTime() : Infinity;
+      return x - y || a.name.localeCompare(b.name, "id");
+    });
+    var nConf = rows.filter(function(t){ return !t.unconfirmed; }).length;
+    el("count").textContent = rows.length + " turnamen · " + nConf + " terkonfirmasi";
+    el("note").textContent = pastHidden ? pastHidden + " sudah lewat disembunyikan" : "";
+    if (!rows.length){
+      list.innerHTML = '<div class="panel empty"><div class="big">🔍</div><h3>Tidak ada yang cocok</h3><p>Coba ubah kata kunci atau filter' + (pastHidden ? ', atau tampilkan turnamen yang sudah lewat' : '') + '.</p><button class="btn" type="button" id="reset">Reset filter</button></div>';
+      el("reset").onclick = function(){ el("q").value = ""; el("city").value = ""; el("month").value = ""; el("onlyConf").checked = false; render(); };
+      return;
+    }
+    var dated = rows.filter(function(t){ return t.start; }), undated = rows.filter(function(t){ return !t.start; });
+    var card = function(t){ return cardHtml(t, t.last ? t.last < now : false); };
+    list.innerHTML = dated.map(card).join("") +
+      (undated.length ? '<h2 class="group-h">Tanggal belum diumumkan (' + undated.length + ')</h2>' + undated.map(card).join("") : "");
+  }
+
+  function showError(msg){
+    el("updated").textContent = "Gagal memuat data";
+    el("banners").innerHTML = '<div class="banner error" role="alert"><span>⚠️</span><div><b>Data turnamen tidak bisa dimuat.</b> ' + esc(msg) +
+      (location.protocol === "file:" ? ' Halaman ini dibuka sebagai file lokal (file://), jadi browser memblokir pengambilan JSON. Jalankan server lokal, mis. <code>python3 -m http.server</code>, lalu buka lewat http://localhost.' : ' Coba muat ulang halaman.') + '</div></div>';
+    el("list").innerHTML = ""; el("count").textContent = "";
+  }
+
+  fetch("tournaments.json?v=" + Date.now(), {cache: "no-store"})
+    .then(function(r){ if (!r.ok) throw new Error("HTTP " + r.status + " saat mengambil tournaments.json."); return r.json(); })
+    .then(function(data){
+      if (!data || !Array.isArray(data.tournaments)) throw new Error("Format tournaments.json tidak valid (field \"tournaments\" harus berupa array).");
+      state.data = data;
+      state.all = data.tournaments.filter(function(t){ return t && typeof t === "object"; }).map(normalize);
+      var up = fmtUpdated(data.updated_at);
+      el("updated").textContent = up ? "Terakhir diperbarui: " + up : "Terakhir diperbarui: —";
+      var b = "";
+      if (state.all.some(function(t){ return t.sample; }))
+        b += '<div class="banner" role="note"><span>🧪</span><div><b>Contoh data / sample.</b> Sebagian entri di bawah ini hanya contoh untuk pratinjau tampilan, bukan turnamen sungguhan.</div></div>';
+      el("banners").innerHTML = b;
+      buildFilters(); render();
+    })
+    .catch(function(e){ showError(e && e.message ? e.message : String(e)); });
+
+  ["q","city","month","showPast","onlyConf"].forEach(function(id){ el(id).addEventListener(id === "q" ? "input" : "change", render); });
+})();
+</script>
+</body>
+</html>
