@@ -2,29 +2,6 @@
   "updated_at": "2026-11-17T21:04:40+07:00",
   "tournaments": [
     {
-      "id": "turnamen-duo-klub-lokal-2026-11-17",
-      "name": "Turnamen DUO Klub Lokal (Single-Double-Single)",
-      "start_date": "2026-11-17",
-      "end_date": "2026-11-17",
-      "city": null,
-      "province": null,
-      "venue": null,
-      "categories": [
-        "Divisi C",
-        "Divisi D"
-      ],
-      "registration_fee": null,
-      "registration_deadline": null,
-      "organizer": null,
-      "contact": null,
-      "source_urls": [
-        "info komunitas, belum dikonfirmasi"
-      ],
-      "date_found": "2026-11-17",
-      "status": "unconfirmed",
-      "notes": "Turnamen internal klub, digelar malam ini mulai ba'da Maghrib hingga 23.30 WIB; jika belum selesai dilanjutkan malam 18 November 2026. Hadiah Rp500 ribu dari donatur. Biaya pendaftaran, venue, kota, dan provinsi tidak disebutkan."
-    },
-    {
       "id": "piala-walikota-tebing-tinggi-2026",
       "name": "Kejuaraan Tenis Meja Piala Wali Kota Tebing Tinggi 2026",
       "start_date": "2026-11-27",
