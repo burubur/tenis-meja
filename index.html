@@ -5,127 +5,275 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Jadwal Turnamen Tenis Meja Indonesia</title>
 <meta name="description" content="Daftar jadwal turnamen tenis meja (ping pong) di Indonesia: tanggal, kota, kategori, biaya, dan kontak panitia.">
+<meta name="theme-color" content="#0b0c10">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#f6f7fb; --card:#fff; --ink:#0f172a; --muted:#5b6475; --line:#e3e7ef;
-  --brand:#e11d48; --brand-ink:#9f1239; --brand-soft:#fff1f3;
-  --chip:#eef2ff; --chip-ink:#3730a3;
-  --warn:#b45309; --warn-soft:#fff7e6; --bad:#b91c1c; --bad-soft:#fdecec;
-  --sample:#6d28d9; --sample-soft:#f3edff;
-  --radius:14px; --shadow:0 1px 2px rgba(15,23,42,.05),0 4px 16px rgba(15,23,42,.06);
+  --night:#0b0c10; --night-2:#15171e; --night-3:#1f2230; --line-d:rgba(255,255,255,.12);
+  --bg:#ffffff; --soft:#f3f4f7; --ink:#0f1115; --muted:#5d6472; --line:#e4e6ec;
+  --hot1:#ff8a00; --hot2:#ff3d2e; --hot3:#e0102f;
+  --grad:linear-gradient(90deg,var(--hot1) 0%,var(--hot2) 55%,var(--hot3) 100%);
+  --blue:#1f5bff; --blue-2:#0a3fd6; --blue-soft:#e8eeff;
+  --warn:#9a5b00; --warn-soft:#fff3d6; --bad:#b4141f; --bad-soft:#fde8ea; --ok:#0f7a45; --ok-soft:#e3f6ec;
+  --sample:#6d28d9; --sample-soft:#f1eaff;
+  --cond:"Barlow Condensed","Oswald","Arial Narrow",system-ui,sans-serif;
+  --body:"Barlow",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --r:18px;
 }
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 "Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-a{color:var(--brand-ink)}
-.wrap{max-width:960px;margin:0 auto;padding:0 16px}
-header.top{background:linear-gradient(135deg,#be123c 0%,#e11d48 55%,#f97316 130%);color:#fff;padding:28px 0 64px}
-.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;opacity:.9}
-.brand .ball{width:14px;height:14px;border-radius:50%;background:#fde68a;box-shadow:0 0 0 3px rgba(255,255,255,.25)}
-h1{margin:10px 0 6px;font-size:clamp(24px,6vw,36px);line-height:1.15;font-weight:800;letter-spacing:-.02em}
-.sub{margin:0;max-width:620px;opacity:.92}
-.updated{margin-top:12px;font-size:13px;opacity:.85}
-main{margin-top:-44px;padding-bottom:48px}
-.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
-.filters{padding:14px;display:grid;gap:10px;grid-template-columns:1fr}
-.filters label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:4px}
-.filters input,.filters select{width:100%;font:inherit;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px;min-height:44px}
-.filters input:focus,.filters select:focus{outline:2px solid var(--brand);outline-offset:1px;border-color:transparent}
-.filters .toggle{display:flex;margin:0;color:var(--ink);align-items:center;gap:8px;font-size:14px;font-weight:500;cursor:pointer;user-select:none;min-height:44px}
-.filters .toggle input{width:20px;height:20px;min-height:0;padding:0;flex:none;accent-color:var(--brand);margin:0}
-@media(min-width:720px){.filters{grid-template-columns:2fr 1fr 1fr;align-items:end}.filters .row2{grid-column:1/-1}}
-.row2{display:flex;flex-wrap:wrap;gap:4px 22px}
-.banner{margin:14px 0 0;padding:12px 14px;border-radius:12px;background:var(--sample-soft);color:#4c1d95;border:1px solid #ddd0fb;font-size:14px;display:flex;gap:10px;align-items:flex-start}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 var(--body)}
+a{color:var(--blue-2)}
+button{font:inherit}
+.wrap{max-width:1200px;margin:0 auto;padding:0 16px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.cond{font-family:var(--cond)}
+.lbl{font-family:var(--cond);font-weight:700;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase}
+
+/* ---------- nav ---------- */
+.nav{background:var(--night);color:#fff;position:sticky;top:0;z-index:20;border-bottom:1px solid var(--line-d)}
+.nav .wrap{display:flex;align-items:center;gap:18px;min-height:60px}
+.logo{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-family:var(--cond);font-weight:800;font-size:21px;letter-spacing:.04em;text-transform:uppercase;line-height:1}
+.logo .mark{width:30px;height:30px;border-radius:50%;background:var(--grad);position:relative;flex:none;box-shadow:inset -4px -4px 0 rgba(0,0,0,.18)}
+.logo .mark::after{content:"";position:absolute;width:9px;height:9px;border-radius:50%;background:#fff;right:-3px;top:-3px;box-shadow:0 0 0 2px var(--night)}
+.logo small{display:block;font-size:11px;font-weight:600;letter-spacing:.18em;color:#a9afbd;margin-top:3px}
+.navlinks{display:none;gap:22px;margin-left:12px}
+.navlinks a{color:#d7dae2;text-decoration:none;font-family:var(--cond);font-weight:700;font-size:15px;letter-spacing:.08em;text-transform:uppercase;padding:19px 0;border-bottom:3px solid transparent}
+.navlinks a.on{color:#fff;border-image:var(--grad) 1}
+.nav .upd{margin-left:auto;font-size:12px;color:#a9afbd;text-align:right;line-height:1.3}
+@media(min-width:760px){.navlinks{display:flex}}
+
+/* ---------- sub bar ---------- */
+.subbar{background:var(--night-2);color:#fff;border-bottom:1px solid var(--line-d)}
+.subbar .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;padding-top:12px;padding-bottom:12px}
+.subbar h1{margin:0;font-family:var(--cond);font-weight:800;font-size:26px;letter-spacing:.04em;text-transform:uppercase;line-height:1}
+.seg{display:inline-flex;background:rgba(255,255,255,.08);border-radius:999px;padding:3px}
+.seg button{border:0;background:transparent;color:#d7dae2;font-family:var(--cond);font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;padding:7px 16px;border-radius:999px;cursor:pointer;min-height:36px}
+.seg button[aria-pressed="true"]{background:var(--grad);color:#fff}
+.search{flex:1 1 100%;position:relative}
+.search input{width:100%;font:inherit;font-size:15px;color:#fff;background:rgba(255,255,255,.08);border:1px solid var(--line-d);border-radius:999px;padding:10px 16px 10px 40px;min-height:44px}
+.search input::placeholder{color:#9aa0ae}
+.search input:focus{outline:2px solid var(--hot2);outline-offset:1px}
+.search svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:16px;height:16px;fill:none;stroke:#9aa0ae;stroke-width:2.2}
+@media(min-width:760px){.search{flex:0 1 420px;margin-left:auto}}
+
+/* ---------- intro + filters ---------- */
+.intro{padding:22px 0 6px}
+.intro p{margin:0;color:var(--muted);max-width:760px}
+.filters{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:16px 0;border-bottom:1px solid var(--line)}
+.filters .f label{display:block;margin-bottom:4px;color:var(--muted)}
+.filters select{width:100%;font:inherit;font-size:15px;color:var(--ink);background:#fff;border:1px solid #cfd3dc;border-radius:10px;padding:9px 12px;min-height:44px}
+.filters select:focus{outline:2px solid var(--hot2);outline-offset:1px}
+.toggles{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px 22px}
+.toggle{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:500;cursor:pointer;user-select:none;min-height:44px}
+.toggle input{width:20px;height:20px;margin:0;accent-color:var(--hot2)}
+@media(min-width:760px){.filters{grid-template-columns:260px 220px 1fr;align-items:end}.toggles{grid-column:auto;justify-content:flex-end}}
+.meta{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 12px;margin:16px 0 12px;font-size:14px;color:var(--muted)}
+.meta #count{font-family:var(--cond);font-weight:700;font-size:16px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink)}
+
+.banner{margin:14px 0 0;padding:12px 14px;border-radius:12px;background:var(--sample-soft);color:#4c1d95;border:1px solid #ddd0fb;font-size:15px;display:flex;gap:10px;align-items:flex-start}
 .banner.error{background:var(--bad-soft);color:#7f1d1d;border-color:#f6caca}
-.banner b{font-weight:700}
-.meta{display:flex;justify-content:space-between;align-items:center;margin:18px 2px 10px;font-size:13px;color:var(--muted)}
-.list{display:grid;gap:14px}
-.card{padding:16px;position:relative;overflow:hidden}
-.card.past{opacity:.7}
-.card .datebox{display:inline-flex;align-items:center;gap:8px;font-weight:700;color:var(--brand-ink);background:var(--brand-soft);border-radius:999px;padding:4px 12px;font-size:13px}
-.card h2{margin:10px 0 4px;font-size:18px;line-height:1.3;font-weight:700;letter-spacing:-.01em}
-.loc{color:var(--muted);font-size:14px;margin:0}
-.badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
-.badge{display:inline-block;font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:999px;letter-spacing:.02em}
+
+/* ---------- event cards ---------- */
+.list{display:grid;gap:18px;padding-bottom:32px}
+.group-h{margin:16px 0 0;font-family:var(--cond);font-weight:800;font-size:20px;letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:center;gap:10px}
+.group-h::before{content:"";width:28px;height:4px;border-radius:2px;background:var(--grad)}
+.ev{border-radius:var(--r);overflow:hidden;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.06),0 10px 30px rgba(10,12,20,.10);border:1px solid var(--line)}
+.ev.past{opacity:.72}
+.band{position:relative;color:#fff;padding:20px 18px 18px;display:grid;gap:18px;background-color:var(--night)}
+.band::before{content:"";position:absolute;inset:0;background:
+  repeating-linear-gradient(115deg,rgba(255,255,255,.035) 0 2px,transparent 2px 22px),
+  radial-gradient(circle at 92% -10%,rgba(255,92,40,.35),transparent 45%);pointer-events:none}
+.band::after{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:var(--grad)}
+.band>*{position:relative}
+.g0{background-image:linear-gradient(120deg,#0b0c10 0%,#1a1d2b 55%,#2a1420 100%)}
+.g1{background-image:linear-gradient(120deg,#0b0c10 0%,#12203d 60%,#0d3a66 100%)}
+.g2{background-image:linear-gradient(120deg,#0b0c10 0%,#231a14 55%,#4a1d0e 100%)}
+.g3{background-image:linear-gradient(120deg,#0b0c10 0%,#1b1530 55%,#34174a 100%)}
+.g4{background-image:linear-gradient(120deg,#0b0c10 0%,#102624 55%,#0e4038 100%)}
+.when{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.date{font-family:var(--cond);font-weight:700;font-size:17px;letter-spacing:.04em}
+.date.nodate{color:#c7cbd6}
+.ev h2,.hero h1{font-family:var(--cond);font-weight:800;line-height:1.05;letter-spacing:.01em;margin:6px 0 8px}
+.ev h2{font-size:clamp(26px,5.4vw,38px)}
+.ev h2 a{color:#fff;text-decoration:none}
+.ev h2 a:hover{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
+.place{margin:0;font-family:var(--cond);font-weight:600;font-size:19px;line-height:1.25;color:#eef0f5}
+.place .na{color:#b6bbc8}
+.chipsrow{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.badge{display:inline-flex;align-items:center;gap:4px;font-family:var(--cond);font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:999px;line-height:1.4}
+.b-unconf{background:#ffd166;color:#4a2c00}
+.b-conf{background:var(--ok-soft);color:var(--ok)}
 .b-sample{background:var(--sample-soft);color:var(--sample);border:1px dashed #b9a1f2}
-.b-unconf{background:#fef3c7;color:#92400e;border:1px solid #f59e0b;font-size:12px;padding:4px 10px}
-.card.unconf{border-top:4px solid #f59e0b}
-.group-h{margin:22px 2px 2px;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
-.src.text{color:var(--muted);font-weight:500;background:#f8fafc;cursor:default}
-.datebox.nodate{background:#eef0f4;color:#475569}
-.b-past{background:#eef0f4;color:#475569}
-.chips{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 2px}
-.chip{background:var(--chip);color:var(--chip-ink);font-size:12.5px;font-weight:600;padding:4px 10px;border-radius:8px}
-dl{display:grid;grid-template-columns:1fr;gap:10px 18px;margin:14px 0 0;padding-top:14px;border-top:1px solid var(--line)}
-@media(min-width:620px){dl{grid-template-columns:1fr 1fr}}
-dt{font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
-dd{margin:2px 0 0;font-size:14.5px;word-break:break-word}
-.na{color:#8a93a6;font-style:italic}
-.flag{display:inline-block;margin-left:6px;font-size:11.5px;font-weight:700;padding:1px 8px;border-radius:999px;vertical-align:1px}
+.b-past{background:#d9dce3;color:#3b4150}
+.b-live{background:var(--grad);color:#fff}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--cond);font-weight:800;font-size:15px;letter-spacing:.1em;text-transform:uppercase;border:0;border-radius:6px;padding:10px 18px;min-height:44px;cursor:pointer;text-decoration:none}
+.btn-light{background:#fff;color:var(--night)}
+.btn-light:hover{background:#ffe9e3}
+.btn-hot{background:var(--grad);color:#fff}
+.actions{margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.cd{display:flex;gap:6px}
+.cd div{min-width:58px;text-align:center;background:rgba(0,0,0,.35);border:1px solid var(--line-d);border-radius:10px;padding:6px 4px 4px}
+.cd b{display:block;font-family:var(--cond);font-weight:800;font-size:30px;line-height:1}
+.cd span{display:block;font-family:var(--cond);font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#c7cbd6}
+.cd-wrap .lbl{color:#c7cbd6;margin-bottom:6px;display:block}
+.divs{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line-d);border:1px solid var(--line-d);border-radius:10px;overflow:hidden;align-self:start}
+.div{display:flex;align-items:center;justify-content:space-between;gap:10px;background:rgba(10,12,18,.72);padding:10px 12px;font-size:15px;font-weight:500;min-height:44px}
+.div i{font-style:normal;flex:none;width:28px;height:28px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-family:var(--cond);font-weight:800;font-size:13px;box-shadow:0 0 0 2px rgba(31,91,255,.35)}
+.divs.empty{background:transparent;border:1px dashed var(--line-d)}
+.divs.empty .div{background:transparent;color:#b6bbc8;font-style:italic}
+.side{display:grid;gap:14px;align-content:start}
+@media(min-width:640px){.divs{grid-template-columns:1fr 1fr}}
+@media(min-width:900px){.band{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);padding:26px 28px 24px}}
+.facts{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line)}
+.facts>div{background:#fff;padding:12px 18px}
+.facts dt{font-family:var(--cond);font-weight:700;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.facts dd{margin:2px 0 0;font-size:15px;word-break:break-word}
+@media(min-width:640px){.facts{grid-template-columns:repeat(3,1fr)}}
+.na{color:#8a91a1;font-style:italic}
+.flag{display:inline-block;margin-left:6px;font-family:var(--cond);font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:1px 8px;border-radius:999px;vertical-align:1px}
 .flag.soon{background:var(--warn-soft);color:var(--warn)}
 .flag.closed{background:var(--bad-soft);color:var(--bad)}
-.notes{margin:14px 0 0;padding:10px 12px;background:#f8fafc;border-left:3px solid #cbd5e1;border-radius:6px;font-size:14px;color:#334155}
-.sources{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
-.src{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:600;text-decoration:none;border:1px solid var(--line);padding:8px 12px;border-radius:10px;min-height:40px;background:#fff}
-.src:hover{border-color:var(--brand);color:var(--brand)}
-.found{font-size:12px;color:var(--muted);margin-top:10px}
-.empty{padding:32px 20px;text-align:center;color:var(--muted)}
-.empty .big{font-size:34px}
-.empty h3{margin:8px 0 4px;color:var(--ink)}
-.btn{font:inherit;font-weight:600;border:0;background:var(--brand);color:#fff;padding:10px 16px;border-radius:10px;cursor:pointer;margin-top:10px;min-height:44px}
-footer{color:var(--muted);font-size:13px;text-align:center;padding:8px 16px 32px}
-.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+.empty-state{padding:40px 20px;text-align:center;color:var(--muted);border:1px dashed #cfd3dc;border-radius:var(--r)}
+.empty-state .big{font-size:36px}
+.empty-state h3{margin:8px 0 4px;color:var(--ink);font-family:var(--cond);font-size:24px;text-transform:uppercase;letter-spacing:.04em}
+
+/* ---------- calendar ---------- */
+.cal{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-bottom:18px}
+.cal-head{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--night);color:#fff;padding:10px 12px}
+.cal-head h2{margin:0;font-family:var(--cond);font-weight:800;font-size:24px;letter-spacing:.06em;text-transform:uppercase}
+.navbtn{width:44px;height:44px;border-radius:50%;border:1px solid var(--line-d);background:rgba(255,255,255,.06);color:#fff;font-size:20px;cursor:pointer}
+.navbtn:hover{background:rgba(255,255,255,.14)}
+.cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr))}
+.cal-dow{background:var(--night-2);color:#c7cbd6;text-align:center;padding:6px 0;font-family:var(--cond);font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase}
+.cal-day{min-height:62px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:4px;display:flex;flex-direction:column;gap:3px;min-width:0}
+.cal-day:nth-child(7n){border-right:0}
+.cal-day.out{background:var(--soft);color:#a3a9b6}
+.cal-day .n{font-family:var(--cond);font-weight:700;font-size:15px;line-height:1.2}
+.cal-day.today .n{background:var(--grad);color:#fff;border-radius:999px;width:24px;text-align:center}
+.cal-ev{display:block;font-size:12px;font-weight:600;line-height:1.25;color:#fff;background:var(--blue);border-radius:4px;padding:2px 5px;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cal-ev.unconf{background:#ffd166;color:#3d2600}
+.cal-ev:hover{filter:brightness(1.1)}
+@media(max-width:639px){.cal-ev{font-size:0;padding:0;height:6px;border-radius:3px}}
+@media(min-width:900px){.cal-day{min-height:104px;padding:6px}}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;padding:10px 12px;font-size:13px;color:var(--muted);border-top:1px solid var(--line)}
+.legend span::before{content:"";display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px;background:var(--blue)}
+.legend span.u::before{background:#ffd166}
+.agenda{display:grid;gap:10px;padding-bottom:32px}
+.ag{display:flex;gap:14px;align-items:center;border:1px solid var(--line);border-radius:14px;padding:10px 14px;text-decoration:none;color:var(--ink);background:#fff}
+.ag:hover{border-color:var(--hot2)}
+.ag .d{flex:none;width:62px;text-align:center;background:var(--night);color:#fff;border-radius:10px;padding:6px 0;font-family:var(--cond);line-height:1.05}
+.ag .d b{display:block;font-size:24px;font-weight:800}
+.ag .d span{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#ffb199}
+.ag h3{margin:0;font-family:var(--cond);font-weight:700;font-size:19px;line-height:1.15}
+.ag p{margin:2px 0 0;font-size:14px;color:var(--muted)}
+
+/* ---------- detail ---------- */
+.backbar{background:var(--night-2);border-bottom:1px solid var(--line-d)}
+.backbar a{display:inline-flex;align-items:center;gap:8px;color:#fff;text-decoration:none;font-family:var(--cond);font-weight:700;font-size:20px;letter-spacing:.04em;min-height:52px}
+.hero{color:#fff}
+.hero .band{border-radius:0;padding:28px 16px 30px}
+.hero h1{font-size:clamp(32px,7vw,56px)}
+@media(min-width:900px){.hero .band{padding:44px max(16px,calc((100vw - 1200px)/2 + 16px)) 44px}}
+.tabs{position:sticky;top:60px;z-index:10;background:#fff;border-bottom:1px solid var(--line);overflow-x:auto}
+.tabs .wrap{display:flex;gap:4px}
+.tabs button{flex:none;border:0;background:none;padding:14px 14px 11px;font-family:var(--cond);font-weight:700;font-size:16px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);border-bottom:3px solid transparent;cursor:pointer;min-height:48px}
+.tabs button.on,.tabs button:hover{color:var(--ink);border-bottom-color:var(--blue)}
+.sec{padding:26px 0 6px;scroll-margin-top:120px}
+.sec h2{margin:0 0 14px;font-family:var(--cond);font-weight:800;font-size:28px;letter-spacing:.04em;text-transform:uppercase;display:flex;align-items:center;gap:10px}
+.sec h2::before{content:"";width:6px;height:26px;border-radius:3px;background:var(--grad)}
+.kv{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:0}
+.kv>div{background:#fff;padding:12px 16px}
+.kv dt{font-family:var(--cond);font-weight:700;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.kv dd{margin:2px 0 0;font-size:16px;word-break:break-word}
+@media(min-width:640px){.kv{grid-template-columns:1fr 1fr}}
+.notes{margin:14px 0 0;padding:12px 14px;background:var(--soft);border-left:4px solid var(--hot2);border-radius:8px;font-size:15px;color:#2b303b}
+.dgrid{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:640px){.dgrid{grid-template-columns:1fr 1fr}}
+@media(min-width:960px){.dgrid{grid-template-columns:1fr 1fr 1fr}}
+.dtile{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-weight:600;background:#fff;min-height:52px}
+.dtile i{font-style:normal;flex:none;width:32px;height:32px;border-radius:8px;background:var(--blue);color:#fff;display:grid;place-items:center;font-family:var(--cond);font-weight:800;font-size:14px}
+.sources{display:flex;flex-wrap:wrap;gap:10px}
+.src{display:inline-flex;align-items:center;gap:6px;font-family:var(--cond);font-size:16px;font-weight:700;letter-spacing:.04em;text-decoration:none;border:1px solid #cfd3dc;color:var(--ink);padding:9px 14px;border-radius:10px;min-height:44px;background:#fff}
+a.src:hover{border-color:var(--hot2);color:var(--hot3)}
+.src.text{color:var(--muted);font-family:var(--body);font-weight:500;font-size:14.5px;letter-spacing:0;background:var(--soft);cursor:default}
+.found{font-size:13px;color:var(--muted);margin-top:12px}
+.detail-end{padding:30px 0 40px}
+
+/* ---------- footer ---------- */
+footer{background:var(--night);color:#a9afbd;font-size:14px;margin-top:24px}
+footer::before{content:"";display:block;height:4px;background:var(--grad)}
+footer .wrap{padding-top:26px;padding-bottom:30px;display:grid;gap:10px}
+footer .logo{font-size:19px}
+footer p{margin:0;max-width:760px}
+footer code{color:#fff}
+[hidden]{display:none!important}
 </style>
 </head>
 <body>
-<header class="top">
+<header class="nav">
   <div class="wrap">
-    <div class="brand"><span class="ball" aria-hidden="true"></span>Tenis Meja · Indonesia</div>
-    <h1>Jadwal Turnamen Tenis Meja Indonesia</h1>
-    <p class="sub">Kumpulan jadwal turnamen tenis meja (ping pong) di seluruh Indonesia. Selalu cek ulang detail ke panitia lewat tautan sumber.</p>
-    <div class="updated" id="updated">Memuat data…</div>
+    <a class="logo" href="#/" aria-label="Beranda Jadwal Turnamen Tenis Meja"><span class="mark" aria-hidden="true"></span><span>Tenis Meja<small>Indonesia</small></span></a>
+    <nav class="navlinks" aria-label="Utama"><a href="#/" class="on">Turnamen</a><a href="#tentang">Tentang data</a></nav>
+    <div class="upd" id="updated">Memuat data…</div>
   </div>
 </header>
 
-<main class="wrap">
-  <section class="panel filters" aria-label="Filter">
-    <div>
-      <label for="q">Cari</label>
-      <input id="q" type="search" placeholder="Nama turnamen, venue, kategori, panitia…" autocomplete="off">
+<div id="listView">
+  <div class="subbar">
+    <div class="wrap">
+      <h1>Turnamen</h1>
+      <div class="seg" role="group" aria-label="Tampilan">
+        <button type="button" id="vList" aria-pressed="true">Daftar</button>
+        <button type="button" id="vCal" aria-pressed="false">Kalender</button>
+      </div>
+      <label class="search"><span class="sr">Cari turnamen</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+        <input id="q" type="search" placeholder="Cari nama turnamen, venue, kategori, panitia…" autocomplete="off">
+      </label>
     </div>
-    <div>
-      <label for="city">Kota</label>
-      <select id="city"><option value="">Semua kota</option></select>
-    </div>
-    <div>
-      <label for="month">Bulan</label>
-      <select id="month"><option value="">Semua bulan</option></select>
-    </div>
-    <div class="row2">
-      <label class="toggle"><input type="checkbox" id="onlyConf"> Hanya yang terkonfirmasi</label>
-      <label class="toggle"><input type="checkbox" id="showPast"> Tampilkan yang sudah lewat</label>
-    </div>
-  </section>
+  </div>
 
-  <div id="banners"></div>
-  <div class="meta"><span id="count" aria-live="polite"></span><span id="note"></span></div>
-  <div class="list" id="list"></div>
-</main>
+  <main class="wrap">
+    <div class="intro"><p>Jadwal turnamen tenis meja (ping pong) di seluruh Indonesia. Selalu cek ulang detail ke panitia lewat tautan sumber.</p></div>
+    <section class="filters" aria-label="Filter">
+      <div class="f"><label class="lbl" for="city">Kota / Provinsi</label><select id="city"><option value="">Semua kota &amp; provinsi</option></select></div>
+      <div class="f"><label class="lbl" for="month">Bulan</label><select id="month"><option value="">Semua bulan</option></select></div>
+      <div class="toggles">
+        <label class="toggle"><input type="checkbox" id="onlyConf"> Hanya yang terkonfirmasi</label>
+        <label class="toggle"><input type="checkbox" id="showPast"> Tampilkan yang sudah lewat</label>
+      </div>
+    </section>
+    <div id="banners"></div>
+    <div class="meta"><span id="count" aria-live="polite"></span><span id="note"></span></div>
+    <div class="list" id="list"></div>
+    <div id="calendar" hidden></div>
+  </main>
+</div>
 
-<footer>Data dari <code>tournaments.json</code>. Info bisa berubah; konfirmasi ke panitia sebelum mendaftar.</footer>
+<div id="detailView" hidden></div>
+
+<footer id="tentang">
+  <div class="wrap">
+    <span class="logo"><span class="mark" aria-hidden="true"></span><span>Tenis Meja<small>Indonesia</small></span></span>
+    <p>Data dari <code>tournaments.json</code>, dikumpulkan dari sumber publik. Info bisa berubah; konfirmasi ke panitia sebelum mendaftar.</p>
+    <p id="footUpd"></p>
+  </div>
+</footer>
 
 <script>
 (function(){
   "use strict";
   var BULAN = ["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Agu","Sep","Okt","Nov","Des"];
   var BULAN_PANJANG = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
+  var HARI = ["Sen","Sel","Rab","Kam","Jum","Sab","Min"];
   var NA = "Belum diumumkan";
   var el = function(id){ return document.getElementById(id); };
-  var state = { all: [], data: null };
+  var state = { all: [], byId: {}, data: null, view: "list", calMonth: null, listScroll: 0, loaded: false };
 
   function esc(s){ return String(s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
   function blank(v){ return v === null || v === undefined || (typeof v === "string" && v.trim() === ""); }
@@ -152,16 +300,19 @@ footer{color:var(--muted);font-size:13px;text-align:center;padding:8px 16px 32px
   function fmtUpdated(s){
     if (blank(s)) return null;
     var d = new Date(s);
-    if (isNaN(d)) { var p = parseDate(s); return p ? fmt(p) : esc(s); }
+    if (isNaN(d)) { var p = parseDate(s); return p ? fmt(p) : String(s); }
     var t = d.toLocaleTimeString("id-ID", {hour:"2-digit", minute:"2-digit"});
     return d.getDate() + " " + BULAN_PANJANG[d.getMonth()] + " " + d.getFullYear() + ", " + t;
   }
   function daysBetween(a, b){ return Math.round((b - a) / 86400000); }
+  function monthKey(d){ return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0"); }
   function safeUrl(u){
     try { var x = new URL(String(u), location.href); return (x.protocol === "http:" || x.protocol === "https:") ? x.href : null; }
     catch(e){ return null; }
   }
   function asArray(v){ return Array.isArray(v) ? v.filter(function(x){ return !blank(x); }) : (blank(v) ? [] : [v]); }
+  function hash(s){ var h = 0; for (var i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0; return Math.abs(h); }
+  function evHref(t){ return "#/event/" + encodeURIComponent(t.id); }
 
   function normalize(t, i){
     var start = parseDate(t.start_date), end = parseDate(t.end_date);
@@ -174,6 +325,7 @@ footer{color:var(--muted);font-size:13px;text-align:center;padding:8px 16px 32px
       name: blank(t.name) ? "(Tanpa nama)" : String(t.name),
       start: start, end: end, last: last,
       city: blank(t.city) ? "" : String(t.city).trim(),
+      province: blank(t.province) ? "" : String(t.province).trim(),
       categories: asArray(t.categories || t.divisions),
       sources: srcs,
       deadline: parseDate(t.registration_deadline),
@@ -182,17 +334,25 @@ footer{color:var(--muted);font-size:13px;text-align:center;padding:8px 16px 32px
       search: [t.name,t.city,t.province,t.venue,t.organizer,t.contact,t.notes,t.registration_fee].concat(asArray(t.categories || t.divisions)).filter(function(x){return !blank(x);}).join(" ").toLowerCase()
     };
   }
+  function isPast(t){ return t.last ? t.last < today() : false; }
+  function isLive(t){ var n = today(); return !!(t.start && t.start <= n && t.last >= n); }
 
   function buildFilters(){
-    var cities = {}, months = {};
+    var cities = {}, provs = {}, months = {};
     state.all.forEach(function(t){
       if (t.city) cities[t.city] = true;
-      if (t.start) months[t.start.getFullYear() + "-" + String(t.start.getMonth()+1).padStart(2,"0")] = t.start;
+      if (t.province) provs[t.province] = true;
+      if (t.start) months[monthKey(t.start)] = t.start;
     });
     var cs = el("city"), ms = el("month");
-    Object.keys(cities).sort(function(a,b){ return a.localeCompare(b, "id"); }).forEach(function(c){
-      var o = document.createElement("option"); o.value = c; o.textContent = c; cs.appendChild(o);
-    });
+    function group(label, obj, prefix){
+      var keys = Object.keys(obj).sort(function(a,b){ return a.localeCompare(b, "id"); });
+      if (!keys.length) return;
+      var g = document.createElement("optgroup"); g.label = label;
+      keys.forEach(function(c){ var o = document.createElement("option"); o.value = prefix + c; o.textContent = c; g.appendChild(o); });
+      cs.appendChild(g);
+    }
+    group("Kota", cities, "c:"); group("Provinsi", provs, "p:");
     Object.keys(months).sort().forEach(function(k){
       var d = months[k], o = document.createElement("option");
       o.value = k; o.textContent = BULAN_PANJANG[d.getMonth()] + " " + d.getFullYear(); ms.appendChild(o);
@@ -207,74 +367,230 @@ footer{color:var(--muted);font-size:13px;text-align:center;padding:8px 16px 32px
     else if (d <= 7) flag = '<span class="flag soon">' + d + ' hari lagi</span>';
     return esc(fmt(t.deadline)) + flag;
   }
+  function placeHtml(t){
+    var r = t.raw, lines = [];
+    if (!blank(r.venue)) lines.push(esc(r.venue));
+    var loc = [t.city, t.province].filter(function(x){ return x; }).map(esc).join(", ");
+    lines.push(loc || '<span class="na">Lokasi ' + NA.toLowerCase() + '</span>');
+    return lines.join("<br>");
+  }
+  function badgesHtml(t){
+    var b = [];
+    if (isLive(t)) b.push('<span class="badge b-live">● Sedang berlangsung</span>');
+    if (t.sample) b.push('<span class="badge b-sample">Contoh data / sample</span>');
+    if (t.unconfirmed) b.push('<span class="badge b-unconf">⚠ Belum dikonfirmasi</span>');
+    else b.push('<span class="badge b-conf">✓ Terkonfirmasi</span>');
+    if (isPast(t)) b.push('<span class="badge b-past">Sudah lewat</span>');
+    return '<div class="chipsrow">' + b.join("") + '</div>';
+  }
+  function divsHtml(t){
+    if (!t.categories.length) return '<div class="divs empty"><div class="div">Kategori: ' + NA + '</div></div>';
+    return '<div class="divs" aria-label="Kategori / divisi">' + t.categories.map(function(c, i){
+      return '<div class="div"><span>' + esc(c) + '</span><i aria-hidden="true">' + (i+1) + '</i></div>';
+    }).join("") + '</div>';
+  }
+  function countdownHtml(t){
+    if (!t.start || t.start <= new Date()) return "";
+    return '<div class="cd-wrap"><span class="lbl">Dimulai dalam</span><div class="cd" data-cd="' + t.start.getTime() + '" role="timer">' +
+      '<div><b data-u="d">–</b><span>Hari</span></div><div><b data-u="h">–</b><span>Jam</span></div><div><b data-u="m">–</b><span>Menit</span></div><div><b data-u="s">–</b><span>Detik</span></div></div></div>';
+  }
+  function tickCountdowns(){
+    var now = Date.now();
+    document.querySelectorAll("[data-cd]").forEach(function(node){
+      var ms = Math.max(0, +node.getAttribute("data-cd") - now), s = Math.floor(ms / 1000);
+      var v = { d: Math.floor(s / 86400), h: Math.floor(s % 86400 / 3600), m: Math.floor(s % 3600 / 60), s: s % 60 };
+      node.querySelectorAll("[data-u]").forEach(function(b){ var u = b.getAttribute("data-u"); b.textContent = u === "d" ? v.d : String(v[u]).padStart(2, "0"); });
+      node.setAttribute("aria-label", v.d + " hari " + v.h + " jam " + v.m + " menit lagi");
+    });
+  }
 
-  function cardHtml(t, isPast){
-    var r = t.raw, loc = [t.city, r.province].filter(function(x){ return !blank(x); }).map(esc).join(", ");
-    var badges = [];
-    if (t.sample) badges.push('<span class="badge b-sample">Contoh data / sample</span>');
-    if (t.unconfirmed) badges.push('<span class="badge b-unconf">⚠ Belum dikonfirmasi</span>');
-    if (isPast) badges.push('<span class="badge b-past">Sudah lewat</span>');
-    var chips = t.categories.length
-      ? '<div class="chips">' + t.categories.map(function(c){ return '<span class="chip">' + esc(c) + '</span>'; }).join("") + '</div>'
-      : '<div class="chips"><span class="na">Kategori: ' + NA + '</span></div>';
+  function cardHtml(t){
+    var r = t.raw;
+    return '<article class="ev' + (isPast(t) ? ' past' : '') + '" id="ev-' + esc(t.id) + '">' +
+      '<div class="band g' + (hash(t.id) % 5) + '">' +
+        '<div>' +
+          '<div class="when">' + (t.start ? '<span class="date">📅 ' + esc(fmtRange(t.start, t.end)) + '</span>' : '<span class="date nodate">📅 Tanggal belum diumumkan</span>') + '</div>' +
+          '<h2><a href="' + esc(evHref(t)) + '">' + esc(t.name) + '</a></h2>' +
+          '<p class="place">' + placeHtml(t) + '</p>' +
+          badgesHtml(t) +
+          '<div class="actions"><a class="btn btn-light" href="' + esc(evHref(t)) + '">Info turnamen <span aria-hidden="true">›</span></a></div>' +
+        '</div>' +
+        '<div class="side">' + countdownHtml(t) + divsHtml(t) + '</div>' +
+      '</div>' +
+      '<dl class="facts">' +
+        '<div><dt>Biaya pendaftaran</dt><dd>' + val(r.registration_fee) + '</dd></div>' +
+        '<div><dt>Batas pendaftaran</dt><dd>' + deadlineHtml(t) + '</dd></div>' +
+        '<div><dt>Penyelenggara</dt><dd>' + val(r.organizer) + '</dd></div>' +
+      '</dl>' +
+    '</article>';
+  }
+
+  function filtered(opts){
+    var q = el("q").value.trim().toLowerCase(), loc = el("city").value, month = opts.ignoreMonth ? "" : el("month").value;
+    var showPast = el("showPast").checked, onlyConf = el("onlyConf").checked, pastHidden = 0;
+    var rows = state.all.filter(function(t){
+      if (loc){
+        if (loc.indexOf("c:") === 0 && t.city !== loc.slice(2)) return false;
+        if (loc.indexOf("p:") === 0 && t.province !== loc.slice(2)) return false;
+      }
+      if (month){ if (!t.start || monthKey(t.start) !== month) return false; }
+      if (q && t.search.indexOf(q) === -1 && t.name.toLowerCase().indexOf(q) === -1) return false;
+      if (onlyConf && t.unconfirmed) return false;
+      if (isPast(t) && !showPast){ pastHidden++; return false; }
+      return true;
+    }).sort(function(a,b){
+      var x = a.start ? a.start.getTime() : Infinity, y = b.start ? b.start.getTime() : Infinity;
+      return x - y || a.name.localeCompare(b.name, "id");
+    });
+    return { rows: rows, pastHidden: pastHidden };
+  }
+
+  function emptyHtml(pastHidden){
+    return '<div class="empty-state"><div class="big">🔍</div><h3>Tidak ada yang cocok</h3><p>Coba ubah kata kunci atau filter' + (pastHidden ? ', atau tampilkan turnamen yang sudah lewat' : '') + '.</p><button class="btn btn-hot" type="button" data-reset>Reset filter</button></div>';
+  }
+  function resetFilters(){ el("q").value = ""; el("city").value = ""; el("month").value = ""; el("onlyConf").checked = false; render(); }
+
+  function render(){
+    if (!state.loaded) return;
+    var list = el("list"), cal = el("calendar");
+    list.hidden = state.view !== "list"; cal.hidden = state.view !== "cal";
+    el("vList").setAttribute("aria-pressed", state.view === "list"); el("vCal").setAttribute("aria-pressed", state.view === "cal");
+    if (!state.all.length){
+      list.hidden = false; cal.hidden = true;
+      list.innerHTML = '<div class="empty-state"><div class="big">🏓</div><h3>Belum ada turnamen</h3><p>Data turnamen sedang dikumpulkan. Cek lagi nanti, ya!</p></div>';
+      el("count").textContent = ""; el("note").textContent = ""; return;
+    }
+    var res = filtered({}), rows = res.rows;
+    var nConf = rows.filter(function(t){ return !t.unconfirmed; }).length;
+    el("count").textContent = rows.length + " turnamen · " + nConf + " terkonfirmasi";
+    el("note").textContent = res.pastHidden ? res.pastHidden + " sudah lewat disembunyikan" : "";
+    if (state.view === "cal") renderCalendar(res);
+    else if (!rows.length) list.innerHTML = emptyHtml(res.pastHidden);
+    else {
+      var dated = rows.filter(function(t){ return t.start; }), undated = rows.filter(function(t){ return !t.start; });
+      list.innerHTML = dated.map(cardHtml).join("") +
+        (undated.length ? '<h2 class="group-h">Tanggal belum diumumkan (' + undated.length + ')</h2>' + undated.map(cardHtml).join("") : "");
+    }
+    document.querySelectorAll("[data-reset]").forEach(function(b){ b.onclick = resetFilters; });
+    tickCountdowns();
+  }
+
+  function renderCalendar(res){
+    var cal = el("calendar"), month = el("month").value;
+    if (month){ var p = month.split("-"); state.calMonth = new Date(+p[0], +p[1]-1, 1); }
+    if (!state.calMonth){
+      var n = today(), nxt = res.rows.filter(function(t){ return t.last && t.last >= n; })[0];
+      var base = nxt ? (nxt.start > n ? nxt.start : n) : n;
+      state.calMonth = new Date(base.getFullYear(), base.getMonth(), 1);
+    }
+    var m0 = state.calMonth, y = m0.getFullYear(), mo = m0.getMonth();
+    var first = new Date(y, mo, 1), last = new Date(y, mo + 1, 0);
+    var offset = (first.getDay() + 6) % 7, gridStart = new Date(y, mo, 1 - offset);
+    var cells = Math.ceil((offset + last.getDate()) / 7) * 7, now = today();
+    var src = month ? res.rows : filtered({ ignoreMonth: true }).rows;
+    var dated = src.filter(function(t){ return t.start; });
+    var html = '<section class="cal" aria-label="Kalender turnamen"><div class="cal-head">' +
+      '<button type="button" class="navbtn" data-cal="-1" aria-label="Bulan sebelumnya">‹</button>' +
+      '<h2>' + BULAN_PANJANG[mo] + ' ' + y + '</h2>' +
+      '<button type="button" class="navbtn" data-cal="1" aria-label="Bulan berikutnya">›</button></div>' +
+      '<div class="cal-grid">' + HARI.map(function(h){ return '<div class="cal-dow">' + h + '</div>'; }).join("");
+    for (var i = 0; i < cells; i++){
+      var d = new Date(gridStart.getFullYear(), gridStart.getMonth(), gridStart.getDate() + i);
+      var evs = dated.filter(function(t){ return d >= t.start && d <= (t.last || t.start); });
+      html += '<div class="cal-day' + (d.getMonth() !== mo ? ' out' : '') + (d.getTime() === now.getTime() ? ' today' : '') + '">' +
+        '<span class="n">' + d.getDate() + '</span>' +
+        evs.map(function(t){ return '<a class="cal-ev' + (t.unconfirmed ? ' unconf' : '') + '" href="' + esc(evHref(t)) + '" title="' + esc(t.name) + '">' + esc(t.name) + '</a>'; }).join("") +
+      '</div>';
+    }
+    html += '</div><div class="legend"><span>Terkonfirmasi</span><span class="u">Belum dikonfirmasi</span></div></section>';
+    var inMonth = dated.filter(function(t){ return t.start <= last && (t.last || t.start) >= first; });
+    var undated = src.filter(function(t){ return !t.start; }).length;
+    html += '<h2 class="group-h">Agenda ' + BULAN_PANJANG[mo] + ' ' + y + ' (' + inMonth.length + ')</h2><div class="agenda">' +
+      (inMonth.length ? inMonth.map(function(t){
+        return '<a class="ag" href="' + esc(evHref(t)) + '"><div class="d"><b>' + t.start.getDate() + '</b><span>' + BULAN[t.start.getMonth()] + '</span></div><div>' +
+          '<h3>' + esc(t.name) + '</h3><p>' + esc(fmtRange(t.start, t.end)) + ' · ' + esc([t.city, t.province].filter(function(x){ return x; }).join(", ") || "Lokasi " + NA.toLowerCase()) +
+          (t.unconfirmed ? ' · ⚠ Belum dikonfirmasi' : '') + '</p></div></a>';
+      }).join("") : '<p class="na">Tidak ada turnamen di bulan ini dengan filter saat ini.</p>') +
+      (undated ? '<p class="found">' + undated + ' turnamen tanpa tanggal hanya muncul di tampilan Daftar.</p>' : '') + '</div>';
+    cal.innerHTML = html;
+    cal.querySelectorAll("[data-cal]").forEach(function(b){
+      b.onclick = function(){
+        state.calMonth = new Date(y, mo + (+b.getAttribute("data-cal")), 1);
+        el("month").value = ""; render();
+      };
+    });
+  }
+
+  function renderDetail(id){
+    var t = state.byId[id], v = el("detailView");
+    if (!t){
+      v.innerHTML = '<div class="backbar"><div class="wrap"><a href="#/">‹ Kembali</a></div></div><main class="wrap detail-end"><div class="empty-state"><div class="big">🏓</div><h3>Turnamen tidak ditemukan</h3><p>Mungkin sudah dihapus dari daftar.</p><a class="btn btn-hot" href="#/">Lihat semua turnamen</a></div></main>';
+      return;
+    }
+    var r = t.raw;
     var srcs = t.sources.map(function(u, i){
       var href = /^https?:\/\//i.test(String(u)) ? safeUrl(u) : null;
       var label = t.sources.length > 1 ? "Sumber " + (i+1) : "Sumber";
       if (!href) return '<span class="src text" title="Sumber non-web">' + label + ': ' + esc(u) + '</span>';
       return '<a class="src" href="' + esc(href) + '" target="_blank" rel="noopener noreferrer">' + label + ' <span aria-hidden="true">↗</span><span class="sr"> (tab baru)</span></a>';
     }).join("");
-    var notes = blank(r.notes) ? "" : '<p class="notes">' + esc(r.notes) + '</p>';
     var found = parseDate(r.date_found);
-    return '<article class="panel card' + (isPast ? ' past' : '') + (t.unconfirmed ? ' unconf' : '') + '" id="' + esc(t.id) + '">' +
-      (t.start ? '<span class="datebox">📅 ' + esc(fmtRange(t.start, t.end)) + '</span>' : '<span class="datebox nodate">📅 Tanggal belum diumumkan</span>') +
-      '<h2>' + esc(t.name) + '</h2>' +
-      '<p class="loc">📍 ' + (loc || '<span class="na">Lokasi ' + NA.toLowerCase() + '</span>') + '</p>' +
-      (badges.length ? '<div class="badges">' + badges.join("") + '</div>' : "") +
-      chips +
-      '<dl>' +
-        '<div><dt>Venue</dt><dd>' + val(r.venue) + '</dd></div>' +
-        '<div><dt>Biaya pendaftaran</dt><dd>' + val(r.registration_fee) + '</dd></div>' +
-        '<div><dt>Batas pendaftaran</dt><dd>' + deadlineHtml(t) + '</dd></div>' +
-        '<div><dt>Penyelenggara</dt><dd>' + val(r.organizer) + '</dd></div>' +
-        '<div><dt>Kontak</dt><dd>' + val(r.contact) + '</dd></div>' +
-      '</dl>' + notes +
-      (srcs ? '<div class="sources">' + srcs + '</div>' : "") +
-      (found ? '<div class="found">Ditemukan ' + esc(fmt(found)) + '</div>' : "") +
-    '</article>';
+    var divs = t.categories.length
+      ? '<div class="dgrid">' + t.categories.map(function(c, i){ return '<div class="dtile"><i aria-hidden="true">' + (i+1) + '</i><span>' + esc(c) + '</span></div>'; }).join("") + '</div>'
+      : '<p class="na">Kategori: ' + NA + '</p>';
+    v.innerHTML =
+      '<div class="backbar"><div class="wrap"><a href="#/" data-back>‹ Kembali</a></div></div>' +
+      '<section class="hero"><div class="band g' + (hash(t.id) % 5) + '"><div>' +
+        '<div class="when">' + (t.start ? '<span class="date">📅 ' + esc(fmtRange(t.start, t.end)) + '</span>' : '<span class="date nodate">📅 Tanggal belum diumumkan</span>') + '</div>' +
+        '<h1>' + esc(t.name) + '</h1><p class="place">' + placeHtml(t) + '</p>' + badgesHtml(t) +
+      '</div><div class="side">' + countdownHtml(t) + divsHtml(t) + '</div></div></section>' +
+      '<nav class="tabs" aria-label="Bagian"><div class="wrap">' +
+        [["ov","Ikhtisar"],["dv","Divisi"],["rg","Pendaftaran"],["sr","Sumber"]].map(function(x, i){ return '<button type="button" data-sec="sec-' + x[0] + '"' + (i ? '' : ' class="on"') + '>' + x[1] + '</button>'; }).join("") +
+      '</div></nav>' +
+      '<main class="wrap detail-end">' +
+        '<section class="sec" id="sec-ov"><h2>Ikhtisar</h2><dl class="kv">' +
+          '<div><dt>Tanggal</dt><dd>' + (t.start ? esc(fmtRange(t.start, t.end)) : '<span class="na">' + NA + '</span>') + '</dd></div>' +
+          '<div><dt>Status</dt><dd>' + (t.unconfirmed ? '⚠ Belum dikonfirmasi' : '✓ Terkonfirmasi') + '</dd></div>' +
+          '<div><dt>Venue</dt><dd>' + val(r.venue) + '</dd></div>' +
+          '<div><dt>Kota</dt><dd>' + val(r.city) + '</dd></div>' +
+          '<div><dt>Provinsi</dt><dd>' + val(r.province) + '</dd></div>' +
+          '<div><dt>Penyelenggara</dt><dd>' + val(r.organizer) + '</dd></div>' +
+        '</dl>' + (blank(r.notes) ? "" : '<p class="notes">' + esc(r.notes) + '</p>') + '</section>' +
+        '<section class="sec" id="sec-dv"><h2>Divisi</h2>' + divs + '</section>' +
+        '<section class="sec" id="sec-rg"><h2>Pendaftaran</h2><dl class="kv">' +
+          '<div><dt>Biaya pendaftaran</dt><dd>' + val(r.registration_fee) + '</dd></div>' +
+          '<div><dt>Batas pendaftaran</dt><dd>' + deadlineHtml(t) + '</dd></div>' +
+          '<div><dt>Kontak</dt><dd>' + val(r.contact) + '</dd></div>' +
+        '</dl></section>' +
+        '<section class="sec" id="sec-sr"><h2>Sumber</h2>' + (srcs ? '<div class="sources">' + srcs + '</div>' : '<p class="na">' + NA + '</p>') +
+          (found ? '<div class="found">Ditemukan ' + esc(fmt(found)) + '</div>' : "") + '</section>' +
+      '</main>';
+    v.querySelectorAll("[data-sec]").forEach(function(b){
+      b.onclick = function(){
+        v.querySelectorAll("[data-sec]").forEach(function(x){ x.classList.toggle("on", x === b); });
+        el(b.getAttribute("data-sec")).scrollIntoView({ behavior: "smooth", block: "start" });
+      };
+    });
+    tickCountdowns();
   }
 
-  function render(){
-    var q = el("q").value.trim().toLowerCase(), city = el("city").value, month = el("month").value, showPast = el("showPast").checked, onlyConf = el("onlyConf").checked;
-    var now = today(), list = el("list");
-    if (!state.all.length){
-      list.innerHTML = '<div class="panel empty"><div class="big">🏓</div><h3>Belum ada turnamen</h3><p>Data turnamen sedang dikumpulkan. Cek lagi nanti, ya!</p></div>';
-      el("count").textContent = ""; return;
-    }
-    var pastHidden = 0;
-    var rows = state.all.filter(function(t){
-      var isPast = t.last ? t.last < now : false;
-      if (city && t.city !== city) return false;
-      if (month){ if (!t.start) return false; var k = t.start.getFullYear() + "-" + String(t.start.getMonth()+1).padStart(2,"0"); if (k !== month) return false; }
-      if (q && t.search.indexOf(q) === -1 && t.name.toLowerCase().indexOf(q) === -1) return false;
-      if (onlyConf && t.unconfirmed) return false;
-      if (isPast && !showPast){ pastHidden++; return false; }
-      return true;
-    }).sort(function(a,b){
-      var x = a.start ? a.start.getTime() : Infinity, y = b.start ? b.start.getTime() : Infinity;
-      return x - y || a.name.localeCompare(b.name, "id");
-    });
-    var nConf = rows.filter(function(t){ return !t.unconfirmed; }).length;
-    el("count").textContent = rows.length + " turnamen · " + nConf + " terkonfirmasi";
-    el("note").textContent = pastHidden ? pastHidden + " sudah lewat disembunyikan" : "";
-    if (!rows.length){
-      list.innerHTML = '<div class="panel empty"><div class="big">🔍</div><h3>Tidak ada yang cocok</h3><p>Coba ubah kata kunci atau filter' + (pastHidden ? ', atau tampilkan turnamen yang sudah lewat' : '') + '.</p><button class="btn" type="button" id="reset">Reset filter</button></div>';
-      el("reset").onclick = function(){ el("q").value = ""; el("city").value = ""; el("month").value = ""; el("onlyConf").checked = false; render(); };
+  function route(){
+    var m = /^#\/event\/(.+)$/.exec(location.hash);
+    var lv = el("listView"), dv = el("detailView");
+    if (m){
+      if (!lv.hidden) state.listScroll = window.scrollY;
+      var id; try { id = decodeURIComponent(m[1]); } catch(e){ id = m[1]; }
+      lv.hidden = true; dv.hidden = false;
+      if (state.loaded){ renderDetail(id); var t = state.byId[id]; document.title = (t ? t.name + " · " : "") + "Jadwal Turnamen Tenis Meja Indonesia"; }
+      window.scrollTo(0, 0);
+    } else if (location.hash === "#tentang") {
       return;
+    } else {
+      var wasHidden = lv.hidden;
+      dv.hidden = true; lv.hidden = false; dv.innerHTML = "";
+      document.title = "Jadwal Turnamen Tenis Meja Indonesia";
+      if (wasHidden){ render(); window.scrollTo(0, state.listScroll); }
     }
-    var dated = rows.filter(function(t){ return t.start; }), undated = rows.filter(function(t){ return !t.start; });
-    var card = function(t){ return cardHtml(t, t.last ? t.last < now : false); };
-    list.innerHTML = dated.map(card).join("") +
-      (undated.length ? '<h2 class="group-h">Tanggal belum diumumkan (' + undated.length + ')</h2>' + undated.map(card).join("") : "");
   }
 
   function showError(msg){
@@ -282,7 +598,14 @@ footer{color:var(--muted);font-size:13px;text-align:center;padding:8px 16px 32px
     el("banners").innerHTML = '<div class="banner error" role="alert"><span>⚠️</span><div><b>Data turnamen tidak bisa dimuat.</b> ' + esc(msg) +
       (location.protocol === "file:" ? ' Halaman ini dibuka sebagai file lokal (file://), jadi browser memblokir pengambilan JSON. Jalankan server lokal, mis. <code>python3 -m http.server</code>, lalu buka lewat http://localhost.' : ' Coba muat ulang halaman.') + '</div></div>';
     el("list").innerHTML = ""; el("count").textContent = "";
+    el("listView").hidden = false; el("detailView").hidden = true;
   }
+
+  el("vList").onclick = function(){ state.view = "list"; render(); };
+  el("vCal").onclick = function(){ state.view = "cal"; render(); };
+  ["q","city","month","showPast","onlyConf"].forEach(function(id){ el(id).addEventListener(id === "q" ? "input" : "change", render); });
+  window.addEventListener("hashchange", route);
+  setInterval(tickCountdowns, 1000);
 
   fetch("tournaments.json?v=" + Date.now(), {cache: "no-store"})
     .then(function(r){ if (!r.ok) throw new Error("HTTP " + r.status + " saat mengambil tournaments.json."); return r.json(); })
@@ -290,17 +613,18 @@ footer{color:var(--muted);font-size:13px;text-align:center;padding:8px 16px 32px
       if (!data || !Array.isArray(data.tournaments)) throw new Error("Format tournaments.json tidak valid (field \"tournaments\" harus berupa array).");
       state.data = data;
       state.all = data.tournaments.filter(function(t){ return t && typeof t === "object"; }).map(normalize);
+      state.all.forEach(function(t){ if (!state.byId[t.id]) state.byId[t.id] = t; });
+      state.loaded = true;
       var up = fmtUpdated(data.updated_at);
-      el("updated").textContent = up ? "Terakhir diperbarui: " + up : "Terakhir diperbarui: —";
+      el("updated").textContent = up ? "Diperbarui " + up : "Terakhir diperbarui: —";
+      el("footUpd").textContent = up ? "Terakhir diperbarui: " + up : "";
       var b = "";
       if (state.all.some(function(t){ return t.sample; }))
         b += '<div class="banner" role="note"><span>🧪</span><div><b>Contoh data / sample.</b> Sebagian entri di bawah ini hanya contoh untuk pratinjau tampilan, bukan turnamen sungguhan.</div></div>';
       el("banners").innerHTML = b;
-      buildFilters(); render();
+      buildFilters(); render(); route();
     })
     .catch(function(e){ showError(e && e.message ? e.message : String(e)); });
-
-  ["q","city","month","showPast","onlyConf"].forEach(function(id){ el(id).addEventListener(id === "q" ? "input" : "change", render); });
 })();
 </script>
 </body>
