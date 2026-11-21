@@ -3,6 +3,16 @@
 A one-page static site that lists table tennis (tenis meja / ping pong) tournaments in Indonesia.
 It needs no build step: `index.html` (plain HTML/CSS/vanilla JS) reads `tournaments.json` and renders it.
 
+## Design and views
+
+The look is a bold sports-site style inspired by event pages such as worldtabletennis.com. It uses only original CSS gradients and patterns: no third-party logos, photos, or assets are copied or hotlinked.
+
+- Near-black nav and footer, white content, an orange-to-red accent gradient, and blue badges for categories/divisions. Fonts: Barlow Condensed (headings, small uppercase labels) and Barlow (body), from Google Fonts.
+- **Daftar (list):** large rounded event cards with a dark gradient band, date range, title, venue and city/province, status badges, an "Info turnamen" button, a grid of category badges, and a live countdown (Hari/Jam/Menit/Detik) for events that have not started. A strip under the band shows fee, registration deadline, and organizer.
+- **Kalender:** a month grid (Monday first) with prev/next buttons, plus an agenda list for that month. Events without a date only appear in the list view. Picking a month in the Bulan filter jumps the calendar to it.
+- **Detail page:** `#/event/<id>` (the id is URL-encoded). It has a back bar, a hero banner, and sections Ikhtisar, Divisi, Pendaftaran (fee, deadline, contact), and Sumber. An unknown id shows "Turnamen tidak ditemukan".
+- Search, filters, and toggles apply to both list and calendar. The UI is in Indonesian and mobile-first.
+
 ```
 tenis-meja-site/
 ├── index.html         # the whole site
@@ -63,7 +73,7 @@ How the page handles the data:
 - "Hanya yang terkonfirmasi" hides everything whose `status` is not `confirmed`. The count line reads e.g. "12 turnamen · 2 terkonfirmasi" for the cards currently shown.
 - An event is "past" once its `end_date` (or `start_date` if there is no end date) is before today. Past events are hidden unless "Tampilkan yang sudah lewat" is ticked.
 - The registration deadline is flagged as "N hari lagi" when it is 7 days away or less, and as "Pendaftaran ditutup" once it has passed.
-- The Kota and Bulan dropdowns are built from the data (`city` and the month of `start_date`).
+- The Kota / Provinsi and Bulan dropdowns are built from the data (`city` and `province` as two option groups, and the month of `start_date`).
 - Only `http(s)` URLs are rendered as links. Text is HTML-escaped.
 - For backwards compatibility the page also accepts `divisions` in place of `categories` and a single `source_url` in place of `source_urls`.
 
